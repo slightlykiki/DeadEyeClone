@@ -23,6 +23,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.GetComponent<Coin>())
         {
             gameManager.instance.score += 5;
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BulletHitsCoin]);
             float coinVelocity = (collision.transform.position.x - transform.position.x) * coinModifier;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(coinVelocity, speedBonus));
         }

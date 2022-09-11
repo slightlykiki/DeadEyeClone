@@ -21,18 +21,22 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.CompareTag("wall"))
         {
             gameManager.instance.score += 500;
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BallBounceWall]);
         }
         if (collision.gameObject.CompareTag("ceiling"))
         {
             gameManager.instance.score += 100;
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BallBounceWall]);
         }
         if(collision.gameObject.CompareTag("topWheel"))
         {
             gameManager.instance.score += 2000;
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BounceOffWheel]);
         }
         if (collision.gameObject.CompareTag("bottomWheel"))
         {
             gameManager.instance.score += 4000;
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BounceOffWheel]);
         }
     }
 }

@@ -25,7 +25,8 @@ public class Projectile : MonoBehaviour
             }
             bulletInstance.gameObject.SetActive(true);
             bulletInstance.transform.position = transform.position + new Vector3(0f, 2f, 0f);
-                bulletInstance.velocity = new Vector2(0f, bulletSpeed);
+            bulletInstance.velocity = new Vector2(0f, bulletSpeed);
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.ShootBullet]);
         }
     }
 }
