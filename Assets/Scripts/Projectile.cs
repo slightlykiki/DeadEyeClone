@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public Rigidbody2D bullet;
     public float bulletSpeed;
+    public Rigidbody2D bulletInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +19,13 @@ public class Projectile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
-            Rigidbody2D bulletInstance = Instantiate(bullet, transform.position + new Vector3(0f,2f,0f), Quaternion.identity);
-            bulletInstance.velocity = new Vector2(0f, bulletSpeed);
+            if (bulletInstance == null)
+            {
+                bulletInstance = Instantiate(bullet, transform.position + new Vector3(0f, 2f, 0f), Quaternion.identity);
+            }
+            bulletInstance.gameObject.SetActive(true);
+            bulletInstance.transform.position = transform.position + new Vector3(0f, 2f, 0f);
+                bulletInstance.velocity = new Vector2(0f, bulletSpeed);
         }
     }
 }

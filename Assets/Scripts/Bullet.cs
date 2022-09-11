@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speedBonus;
+    public float coinModifier;
 
     // Start is called before the first frame update
     void Start()
@@ -15,15 +16,16 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Coin>())
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, speedBonus));
+            gameManager.instance.score += 5;
+            float coinVelocity = (collision.transform.position.x - transform.position.x) * coinModifier;
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(coinVelocity, speedBonus));
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
