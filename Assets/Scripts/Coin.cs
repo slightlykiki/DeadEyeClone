@@ -38,5 +38,10 @@ public class Coin : MonoBehaviour
             gameManager.instance.score += 4000;
             gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BounceOffWheel]);
         }
+        if (collision.gameObject.CompareTag("floor"))
+        {
+            GetComponent<Rigidbody2D>().simulated = false;
+            gameManager.instance.gameOver = true;
+        }
     }
 }
