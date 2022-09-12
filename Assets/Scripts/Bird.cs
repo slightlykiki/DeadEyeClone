@@ -28,6 +28,7 @@ public class Bird : MonoBehaviour
                 transform.position = new Vector2(12, 3.4f);
                 actualTime = 0;
                 birdSpawner();
+                gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BirdSpawn]);
             }
             if (isDead == true)
             {
@@ -49,6 +50,7 @@ public class Bird : MonoBehaviour
     {
         if (isDead == false)
         {
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BirdDie]);
             isDead = true;
             gameManager.instance.score += 1000;
         }

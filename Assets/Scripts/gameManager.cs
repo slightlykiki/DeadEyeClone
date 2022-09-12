@@ -26,7 +26,6 @@ public class gameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         instance = this;
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(clips[(int)AudioNames.BallThrownInAir]);
     }
 
     // Update is called once per frame

@@ -19,6 +19,7 @@ public class Bat : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         batSpawner();
+        gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BatDie]);
         gameManager.instance.score += 50;
     }
 

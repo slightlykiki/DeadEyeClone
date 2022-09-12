@@ -42,6 +42,7 @@ public class Coin : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().simulated = false;
             gameManager.instance.gameOver = true;
+            gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BallFallToGround]);
         }
     }
 }

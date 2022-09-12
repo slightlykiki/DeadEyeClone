@@ -37,6 +37,7 @@ public class Projectile : MonoBehaviour
                 firstCoin.velocity = new Vector2(0f, 5f);
                 coinSpawned = true;
                 gameManager.instance.gameStart = true;
+                gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BallThrownInAir]);
             }
         }
     }
