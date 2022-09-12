@@ -9,6 +9,8 @@ public class Bird : MonoBehaviour
     float targetTime;
     float actualTime;
     public bool isDead;
+    public Sprite[] wings;
+    public float AnimT = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class Bird : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (gameManager.instance.gameStart == true)
         {
             actualTime += Time.deltaTime;
@@ -33,10 +36,40 @@ public class Bird : MonoBehaviour
             if (isDead == true)
             {
                 transform.Translate(new Vector2(0, birdSpeedY * Time.deltaTime));
+                AnimT++;
+                if (AnimT >= 0)
+                {
+                    transform.localScale = new Vector3(3.2f, 3.2f, 1);
+                }
+                if (AnimT >= 0.1f * 60)
+                {
+                    transform.localScale = new Vector3(-3.2f, 3.2f, 1);
+                }
+                if (AnimT >= 0.2f * 60)
+                {
+                    AnimT = 0;
+                }
             }
             else
             {
                 transform.Translate(new Vector2(birdSpeedX * Time.deltaTime, 0));
+                AnimT++;
+                if (AnimT >= 0)
+                {
+                    GetComponent<SpriteRenderer>().sprite = wings[0];
+                }
+                if (AnimT >= 0.1f * 60)
+                {
+                    GetComponent<SpriteRenderer>().sprite = wings[1];
+                }
+                if (AnimT >= 0.2f * 60)
+                {
+                    GetComponent<SpriteRenderer>().sprite = wings[2];
+                }
+                if (AnimT >= 0.3f * 60)
+                {
+                    AnimT = 0;
+                }
             }
         }
     }
@@ -53,6 +86,8 @@ public class Bird : MonoBehaviour
             gameManager.instance.audioSource.PlayOneShot(gameManager.instance.clips[(int)AudioNames.BirdDie]);
             isDead = true;
             gameManager.instance.score += 1000;
+            AnimT = 0;
+            GetComponent<SpriteRenderer>().sprite = wings[3];
         }
     }
 
